@@ -1,0 +1,34 @@
+// 0. [x]Create a collection named orders.
+db.createCollection('orders')
+
+// 0.[x]Insert at least 3 documents that represent an order. IMPORTANT: See section below for fields. Order dates should be: 2017-02-03, 2017-04-04, 2017-01-02
+  db.getCollection('order').insert({orderDate: new Date('2017-01-02'), orderTotal: 0, lineItems:[]})
+  db.getCollection('order').insert({orderDate: new Date('2017-02-03'), orderTotal: 0, lineItems:[]})
+  db.getCollection('order').insert({orderDate: new Date('2017-04-04'), orderTotal: 0, lineItems:[]})
+// 0.[x][Find all orders and make them look pretty.
+  db.order.find().pretty()
+
+// 0.[x]Find all orders with an orderDate that is after 1/31/2017.
+db.getCollection('order').find({orderDate: {$gt: new Date('2017-01-31') }}).pretty()
+
+// 0.[x ]Change the orderTotal from 2/3/2017 to 63 dollars (you do NOT have to ensure the lineItems' unitPrice * quantity add up to the orderTotal)
+  db.getCollection('order').update({orderDate: new Date('2017-02-03')}, {$set: {orderTotal: 63 }})
+
+// 0.[x]Add another lineItem to the order from 4/4/2017
+db.getCollection('order').update({orderDate: new Date('2017-04-04')}, {$push:{lineItems:{unitPrice:63}}})
+
+// 0.[x]Change the first lineItem in the order from 1/2/2017 to be for 2 'transistor radio's
+db.getCollection('order').update({orderDate: new Date('2017-01-02')}, {$push:{lineItems:{quanity:2}}})
+db.getCollection('order').update({orderDate: new Date('2017-01-02')}, {$push:{lineItems:{productName:'Transistor radio'}}})
+
+// 0.[x]Find orders with lineItems that have a quantity that is less than 10, but greater than 2. You will have to research $and
+order fields
+db.getCollection('order').find({$and:[ { 'lineItems.quanity' : { $gt : 2}}, {'lineItems.quanity':{ $lt: 10 } } ]} )
+
+
+
+Your orders need to have the following fields:
+
+orderDate -- see https://docs.mongodb.org/manual/reference/method/Date/
+orderTotal
+lineItems -- a sub-document (array) that can accommodate many line items with fields: unitPrice, quantity, productName
