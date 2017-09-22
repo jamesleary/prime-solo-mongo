@@ -1,10 +1,17 @@
+## Description
+This project is a solo Challenge from Prime University testing our ability to create http routes that connected to a mongo database.
+
+## Tech Used
+* Node.js
+* MongoDb
+* AngularJS
 
 Open mongo shell
-[] Type use antares to create your database (or use an existing database)
+- [x] Type use antares to create your database (or use an existing database)
 GitHub repo
 
 Create a GitHub repo named “prime-solo-mongo”.
-[x]Create a file called “mongo.txt”. You will store your responses to the exercise questions here.
+- [x]Create a file called “mongo.txt”. You will store your responses to the exercise questions here.
 
 
 For each of the following questions
